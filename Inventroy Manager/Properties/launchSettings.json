@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Inventroy Manager": {
+      "commandName": "Project",
+      "commandLineArgs": "testInv.db"
+    }
+  }
+}
