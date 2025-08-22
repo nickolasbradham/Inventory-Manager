@@ -4,13 +4,14 @@ namespace Inventroy_Manager
 {
     public class Manager
     {
-        public bool running = true;
+        internal readonly Dictionary<string, AbstractCommand> commands = [];
+        internal bool running = true;
 
-        private readonly Dictionary<string, AbstractCommand> commands = [];
         private readonly SqliteConnection connection;
         private Manager(string dbPath)
         {
             commands.Add("exit", new CommandExit(this));
+            commands.Add("help", new CommandHelp(this));
             connection = new SqliteConnection($"Data Source={dbPath}");
         }
 
@@ -26,12 +27,14 @@ namespace Inventroy_Manager
                 var split = input.IndexOf(' ');
                 if (split == -1) split = input.Length;
                 var superCommand = input[..split];
+                if (superCommand == "") continue;
                 if (!commands.ContainsKey(superCommand))
                 {
-                    Console.WriteLine("Unknown command.");
+                    Console.WriteLine($"Unknown command '{superCommand}'. Use 'help' for a list of commands.");
                     continue;
                 }
-                commands[superCommand].Execute(input[split..]);
+                commands[superCommand].Execute(input[split..].Trim());
+                Console.WriteLine();
             } while (running);
         }
 

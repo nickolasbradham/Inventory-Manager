@@ -6,5 +6,15 @@
         {
             manager.running = false;
         }
+
+        internal override string GetSimpleHelp()
+        {
+            return "Exits the program.";
+        }
+
+        internal override void Help()
+        {
+            Console.WriteLine("Quits the program.");
+        }
     }
 }
