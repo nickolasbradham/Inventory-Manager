@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Inventroy Manager/.vs/Inventroy Manager
+/Inventroy Manager/obj
