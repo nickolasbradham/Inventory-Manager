@@ -1,4 +1,7 @@
 ﻿using Inventroy_Manager.Commands;
+using Inventroy_Manager.Commands.Add;
+using Inventroy_Manager.Commands.List;
+using Inventroy_Manager.Commands.Remove;
 using Microsoft.Data.Sqlite;
 namespace Inventroy_Manager
 {

@@ -1,14 +1,11 @@
-﻿namespace Inventroy_Manager.Commands
+﻿namespace Inventroy_Manager.Commands.List
 {
-    internal class CommandList(Manager setManager) : AbstractCommand(setManager)
+    internal class CommandListType(Manager setManager) : AbstractCommand(setManager)
     {
+        private readonly static string HELP_TEXT = "Lists all item types (tables).";
+
         internal override void Execute(string args)
         {
-            if (args != "type")
-            {
-                Console.WriteLine("Invalid arguments. See 'help list' for usage.");
-                return;
-            }
             var command = manager.connection.CreateCommand();
             command.CommandText = "SELECT name FROM sqlite_master";
             var reader = command.ExecuteReader();
@@ -20,13 +17,12 @@
 
         internal override string GetSimpleHelp()
         {
-            return "Lists data about the database.";
+            return HELP_TEXT;
         }
 
         internal override void Help(string args)
         {
-            Console.WriteLine(@"Usage: list type
-Lists data about the database.");
+            Console.WriteLine(HELP_TEXT);
         }
     }
 }
