@@ -14,7 +14,7 @@
             return HELP_TEXT;
         }
 
-        internal override void Help()
+        internal override void Help(string args)
         {
             Console.WriteLine(HELP_TEXT);
         }

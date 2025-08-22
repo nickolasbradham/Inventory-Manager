@@ -6,7 +6,7 @@ namespace Inventroy_Manager.Commands
         protected readonly Manager manager = setManager;
 
         internal abstract void Execute(string args);
-        internal abstract void Help();
+        internal abstract void Help(string args);
         internal abstract string GetSimpleHelp();
     }
 }

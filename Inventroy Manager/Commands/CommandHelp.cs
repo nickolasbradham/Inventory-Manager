@@ -15,8 +15,10 @@
             }
             else
             {
-                if (manager.commands.TryGetValue(args, out AbstractCommand? value))
-                    value.Help();
+                var split = args.IndexOf(' ');
+                if (split == -1) split = args.Length;
+                if (manager.commands.TryGetValue(args[..split], out AbstractCommand? value))
+                    value.Help(args[split..].Trim());
                 else
                     Console.WriteLine($"Unknown command '{args}'. Use 'help' for a list of commands.");
 
@@ -28,7 +30,7 @@
             return "Prints help text.";
         }
 
-        internal override void Help()
+        internal override void Help(string args)
         {
             Console.WriteLine("Shows help text. Use 'help <command>' to get detailed info on a command.");
         }

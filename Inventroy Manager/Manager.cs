@@ -7,11 +7,14 @@ namespace Inventroy_Manager
         internal readonly Dictionary<string, AbstractCommand> commands = [];
         internal bool running = true;
 
-        private readonly SqliteConnection connection;
+        internal readonly SqliteConnection connection;
         private Manager(string dbPath)
         {
+            commands.Add("add", new CommandAdd(this));
+            commands.Add("remove", new CommandRemove(this));
             commands.Add("exit", new CommandExit(this));
             commands.Add("help", new CommandHelp(this));
+            commands.Add("list", new CommandList(this));
             connection = new SqliteConnection($"Data Source={dbPath}");
         }
 
