@@ -28,12 +28,10 @@ namespace Inventroy_Manager
                 if (split == -1) split = input.Length;
                 var superCommand = input[..split];
                 if (superCommand == "") continue;
-                if (!commands.ContainsKey(superCommand))
-                {
+                if (commands.TryGetValue(superCommand, out AbstractCommand? value))
+                    value.Execute(input[split..].Trim());
+                else
                     Console.WriteLine($"Unknown command '{superCommand}'. Use 'help' for a list of commands.");
-                    continue;
-                }
-                commands[superCommand].Execute(input[split..].Trim());
                 Console.WriteLine();
             } while (running);
         }

@@ -2,6 +2,8 @@
 {
     internal class CommandExit(Manager setManager) : AbstractCommand(setManager)
     {
+        private static readonly string HELP_TEXT = "Exits the program.";
+
         internal override void Execute(string args)
         {
             manager.running = false;
@@ -9,12 +11,12 @@
 
         internal override string GetSimpleHelp()
         {
-            return "Exits the program.";
+            return HELP_TEXT;
         }
 
         internal override void Help()
         {
-            Console.WriteLine("Quits the program.");
+            Console.WriteLine(HELP_TEXT);
         }
     }
 }
